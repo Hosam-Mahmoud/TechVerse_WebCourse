@@ -64,7 +64,7 @@
             border-radius: 15px;
             box-shadow: var(--shadow);
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             position: relative;
             overflow: hidden;
         }
@@ -227,7 +227,7 @@
             display: block;
         }
         
-        /* --- LESSON CARD STYLES (UPDATED FOR COLLAPSE) --- */
+        /* --- LESSON CARD STYLES --- */
         .lesson-card {
             background-color: var(--container-bg);
             border-radius: 12px;
@@ -239,7 +239,7 @@
         }
 
         .lesson-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow);
         }
 
@@ -496,13 +496,42 @@
             border: none;
         }
 
-        /* --- Responsive Design --- */
+        /* --- IMPROVED RESPONSIVE DESIGN --- */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 15px;
+            }
+            .main-header h1 { font-size: 2.5rem; }
+            .main-header p { font-size: 1.2rem; }
+        }
+
         @media (max-width: 768px) {
-            .main-header h1 { font-size: 2.2rem; }
-            .main-header p { font-size: 1.1rem; }
-            .controls { position: static; justify-content: center; margin-top: 20px; }
-            .header-creator { font-size: 0.9rem; }
-            .lesson-tasks { grid-template-columns: 1fr; }
+            .container {
+                padding: 10px;
+            }
+            .main-header {
+                padding: 40px 20px;
+            }
+            .main-header h1 { 
+                font-size: 2.2rem; 
+                margin-bottom: 15px;
+            }
+            .main-header p { 
+                font-size: 1.1rem; 
+                margin-bottom: 15px;
+            }
+            .header-creator { 
+                font-size: 0.9rem; 
+                margin-top: 15px;
+            }
+            .controls {
+                position: static;
+                justify-content: center;
+                margin-top: 15px;
+            }
+            .lesson-tasks {
+                grid-template-columns: 1fr;
+            }
             .playground-container {
                 grid-template-columns: 1fr;
                 height: auto;
@@ -513,20 +542,89 @@
         }
 
         @media (max-width: 480px) {
-            .main-header { padding: 40px 15px; }
-            .main-header h1 { font-size: 1.8rem; }
-            .main-header p { font-size: 1rem; }
-            .content-section { padding: 15px; }
-            .module-card, .lesson-card { margin-bottom: 15px; }
-            .lesson-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .lesson-links { width: 100%; justify-content: center; }
+            .container {
+                padding: 8px;
+            }
+            .main-header {
+                padding: 30px 15px;
+            }
+            .main-header h1 { 
+                font-size: 1.8rem; 
+                margin-bottom: 10px;
+            }
+            .main-header p { 
+                font-size: 1rem; 
+                margin-bottom: 10px;
+            }
+            .header-creator { 
+                font-size: 0.85rem; 
+                margin-top: 10px;
+            }
+            .content-section {
+                padding: 15px;
+            }
+            .content-section h2 {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+            .module-card, .lesson-card {
+                margin-bottom: 15px;
+            }
+            .module-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .module-toggle {
+                align-self: flex-end;
+            }
+            .lesson-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .lesson-links {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            .lesson-link-btn {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+            }
+            .task-item {
+                padding: 12px;
+            }
+            .task-item i {
+                font-size: 1.1rem;
+            }
+            .lesson-notes-textarea {
+                min-height: 80px;
+                font-size: 0.9rem;
+            }
+            .editor-pane, .output-pane {
+                height: 40vh;
+            }
+            .pane-header {
+                padding: 8px 12px;
+            }
+            .pane-header h3 {
+                font-size: 0.9rem;
+            }
+            .editor-tab {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+            .CodeMirror {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <header class="main-header">
+ <header class="main-header">
             <div class="controls">
                 <button id="darkModeToggle" title="تبديل الوضع الليلي"><i class="fas fa-moon"></i></button>
             </div>
@@ -600,7 +698,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 lessons: [
                     { 
                         id: 'l1', 
-                        title: 'الدرس الأول: بناء الويب - من الفكرة إلى المتصفح', 
+                        title:'الدرس الأول: بناء الويب', 
                         xp: 20, 
                         videoLink: 'https://youtu.be/BOaNDbiLsCQ?si=wADqNLqJ61supu7S',
                         quizLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdma7xpSyYH2Stw0hvj-rdrWbNJaeD6sh4SeAQVYxqPwLm74g/viewform?usp=sharing&ouid=105855515034096544909',
@@ -619,7 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     { 
                         id: 'l2', 
-                        title: 'الدرس الثاني: تنسيق النصوص وإضافة الحياة للمحتوى', 
+                        title: 'الدرس الثاني: تنسيق النصوص ', 
                         xp: 25, 
                         videoLink: 'https://youtu.be/BGgzsRbvaC8?si=o-Mtd76pQtW5xJIF',
                         quizLink: 'https://docs.google.com/forms/d/e/1FAIpQLSfiYZyHEyMFYPViGpAUYbjGZEU9NxIFba25uahlRY6gKQ99pQ/viewform?usp=publish-editor',
