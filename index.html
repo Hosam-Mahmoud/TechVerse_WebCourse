@@ -70,7 +70,6 @@
         }
 
         .main-header::before {
-            content: '';
             position: absolute;
             top: -50%;
             left: -50%;
@@ -528,6 +527,7 @@
                 position: static;
                 justify-content: center;
                 margin-top: 15px;
+                margin-bottom: 10px;
             }
             .lesson-tasks {
                 grid-template-columns: 1fr;
@@ -699,7 +699,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     { 
                         id: 'l1', 
                         title:'الدرس الأول: بناء الويب', 
-                        xp: 20, 
                         videoLink: 'https://youtu.be/BOaNDbiLsCQ?si=wADqNLqJ61supu7S',
                         quizLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdma7xpSyYH2Stw0hvj-rdrWbNJaeD6sh4SeAQVYxqPwLm74g/viewform?usp=sharing&ouid=105855515034096544909',
                         content: `
@@ -718,7 +717,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     { 
                         id: 'l2', 
                         title: 'الدرس الثاني: تنسيق النصوص ', 
-                        xp: 25, 
                         videoLink: 'https://youtu.be/BGgzsRbvaC8?si=o-Mtd76pQtW5xJIF',
                         quizLink: 'https://docs.google.com/forms/d/e/1FAIpQLSfiYZyHEyMFYPViGpAUYbjGZEU9NxIFba25uahlRY6gKQ99pQ/viewform?usp=publish-editor',
                         content: `
@@ -737,7 +735,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         ],
         state: {
-            totalXp: 0,
             streak: 0,
             lastCheckDate: null,
             notes: {},
@@ -920,21 +917,18 @@ document.addEventListener('DOMContentLoaded', () => {
             icon.classList.toggle('fa-chevron-up');
         });
 
-        videoCheckbox.addEventListener('change', () => handleTaskCompletion(lesson.id, 'video', videoCheckbox.checked, lesson.xp / 2));
-        quizCheckbox.addEventListener('change', () => handleTaskCompletion(lesson.id, 'quiz', quizCheckbox.checked, lesson.xp / 2));
+        videoCheckbox.addEventListener('change', () => handleTaskCompletion(lesson.id, 'video', videoCheckbox.checked));
+        quizCheckbox.addEventListener('change', () => handleTaskCompletion(lesson.id, 'quiz', quizCheckbox.checked));
         notesTextarea.addEventListener('input', () => handleNoteChange(lesson.id, notesTextarea.value));
 
         return lessonCard;
     }
 
-    function handleTaskCompletion(lessonId, taskType, isChecked, xpReward) {
+    function handleTaskCompletion(lessonId, taskType, isChecked) {
         localStorage.setItem(`${taskType}-${lessonId}`, isChecked);
         
         if (isChecked) {
-            app.state.totalXp += xpReward;
-            showNotification(`🎉 أحسنت! حصلت على ${xpReward} XP!`);
-        } else {
-            app.state.totalXp -= xpReward;
+            showNotification(`🎉 أحسنت! تم إكمال المهمة بنجاح!`);
         }
         
         checkLessonCompletion(lessonId);
