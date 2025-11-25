@@ -70,7 +70,6 @@
         }
 
         .main-header::before {
-            content: '';
             position: absolute;
             top: -50%;
             left: -50%;
@@ -311,7 +310,7 @@
         }
         
         .lesson-body.show {
-            max-height: 5000px; /* Increased to accommodate long content */
+            max-height: 2000px; /* A large enough value to accommodate content */
             padding: 20px;
             transition: max-height 0.5s ease-in, padding 0.3s ease-in;
         }
@@ -354,7 +353,6 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-bottom: 20px;
         }
 
         .task-header {
@@ -379,29 +377,6 @@
         
         .task-description li {
             margin-bottom: 8px;
-        }
-        
-        .code-example {
-            background-color: #2d2d2d;
-            color: #f8f8f2;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-            overflow-x: auto;
-            direction: ltr;
-        }
-        
-        .code-example code {
-            display: block;
-        }
-        
-        .example-output {
-            background-color: var(--bg-color);
-            border: 1px dashed var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
         }
         
         /* --- LESSON NOTES SECTION --- */
@@ -755,173 +730,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             </ul>
                             <p>بعد هذا الدرس، ستكون قادرًا على تحويل أي نص عادي إلى صفحة ويب منظمة وجميلة.</p>
                         `
-                    },
-                    { 
-                        id: 'l3', 
-                        title: 'الدرس الثالث: الصور والروابط', 
-                        videoLink: 'https://youtu.be/pKAgKV00rZs?si=DRv1M2Oenf5_Gqmd',
-                        quizLink: 'https://docs.google.com/forms/d/e/1FAIpQLSfXbKfhz4vMs6WAy8CnJSOFL4vUobRykJyCPSvw-SzoTvEahw/viewform?usp=publish-editor',
-                        content: `
-                            <p>في هذا الدرس، سنتعلم كيفية إضافة الصور والروابط إلى صفحات الويب الخاصة بنا. الصور والروابط من أهم العناصر التي تجعل صفحات الويب تفاعلية وجذابة للمستخدمين.</p>
-                            
-                            <div class="task-section">
-                                <div class="task-header">
-                                    <i class="fas fa-image"></i>
-                                    <span>إدراج الصور</span>
-                                </div>
-                                <div class="task-description">
-                                    <p>نستخدم وسم <code>&lt;img&gt;</code> لإدراج الصور في صفحات HTML. يحتوي هذا الوسم على عدة خصائص مهمة:</p>
-                                    <ul>
-                                        <li><strong>src:</strong> تحدد مسار الصورة (إما رابط URL أو مسار محلي)</li>
-                                        <li><strong>alt:</strong> نص بديل يظهر عند عدم تحميل الصورة، ومهم لتحسين محركات البحث وإمكانية الوصول</li>
-                                        <li><strong>width:</strong> يحدد عرض الصورة بالبكسل أو النسبة المئوية</li>
-                                        <li><strong>height:</strong> يحدد ارتفاع الصورة بالبكسل أو النسبة المئوية</li>
-                                    </ul>
-                                    
-                                    <div class="code-example">
-                                        <code>&lt;img src="https://example.com/image.jpg" alt="وصف الصورة" width="300" height="200"&gt;</code>
-                                    </div>
-                                    
-                                    <p><strong>ملاحظات هامة:</strong></p>
-                                    <ul>
-                                        <li>وسم <code>&lt;img&gt;</code> هو وسم فارغ (لا يحتاج إلى وسم إغلاق)</li>
-                                        <li>من الأفضل تحديد إما العرض أو الارتفاع فقط، ليحافظ المتصفح على نسبة العرض إلى الارتفاع الأصلية</li>
-                                        <li>خاصية alt ضرورية لتحسين إمكانية الوصول (accessibility) وتحسين محركات البحث (SEO)</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="task-section">
-                                <div class="task-header">
-                                    <i class="fas fa-link"></i>
-                                    <span>الروابط (Hyperlinks)</span>
-                                </div>
-                                <div class="task-description">
-                                    <p>نستخدم وسم <code>&lt;a&gt;</code> لإنشاء الروابط في HTML. يحتوي هذا الوسم على خاصية <code>href</code> التي تحدد وجهة الرابط.</p>
-                                    
-                                    <div class="code-example">
-                                        <code>&lt;a href="https://www.example.com"&gt;هذا رابط لموقع مثال&lt;/a&gt;</code>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="task-section">
-                                <div class="task-header">
-                                    <i class="fas fa-external-link-alt"></i>
-                                    <span>الروابط الخارجية (External Links)</span>
-                                </div>
-                                <div class="task-description">
-                                    <p>الروابط الخارجية هي الروابط التي توجه المستخدم إلى صفحات خارج موقعك الحالي. تستخدم عادةً بروتوكول HTTP أو HTTPS الكامل.</p>
-                                    
-                                    <div class="code-example">
-                                        <code>&lt;a href="https://www.google.com"&gt;اذهب إلى جوجل&lt;/a&gt;</code>
-                                    </div>
-                                    
-                                    <p>يمكنك استخدام خاصية <code>target="_blank"</code> لفتح الرابط في نافذة أو علامة تبويب جديدة:</p>
-                                    
-                                    <div class="code-example">
-                                        <code>&lt;a href="https://www.google.com" target="_blank"&gt;اذهب إلى جوجل في نافذة جديدة&lt;/a&gt;</code>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="task-section">
-                                <div class="task-header">
-                                    <i class="fas fa-home"></i>
-                                    <span>الروابط الداخلية (Internal Links)</span>
-                                </div>
-                                <div class="task-description">
-                                    <p>الروابط الداخلية هي الروابط التي توجه المستخدم إلى صفحات أخرى داخل نفس موقعك. يمكن استخدام مسار نسبي أو مسار مطلق.</p>
-                                    
-                                    <div class="code-example">
-                                        <code>&lt;a href="about.html"&gt;صفحة من نحن&lt;/a&gt;<br>
-&lt;a href="/products/laptops.html"&gt;صفحة أجهزة اللابتوب&lt;/a&gt;</code>
-                                    </div>
-                                    
-                                    <p>المسار النسبي (مثل <code>about.html</code>) يبحث عن الملف في نفس المجلد، بينما المسار المطلق (مثل <code>/products/laptops.html</code>) يبدأ من جذر الموقع.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="task-section">
-                                <div class="task-header">
-                                    <i class="fas fa-envelope"></i>
-                                    <span>روابط الإيميل (mailto)</span>
-                                </div>
-                                <div class="task-description">
-                                    <p>يمكنك إنشاء رابط يفتح برنامج البريد الإلكتروني الافتراضي للمستخدم مع تحديد عنوان البريد الإلكتروني المستلم.</p>
-                                    
-                                    <div class="code-example">
-                                        <code>&lt;a href="mailto:example@example.com"&gt;أرسل بريدًا إلكترونيًا&lt;/a&gt;</code>
-                                    </div>
-                                    
-                                    <p>يمكنك أيضًا تحديد موضوع ومحتوى مسبق للبريد الإلكتروني:</p>
-                                    
-                                    <div class="code-example">
-                                        <code>&lt;a href="mailto:example@example.com?subject=استفسار&body=مرحباً، أود الاستفسار عن...&gt;أرسل استفسارًا&lt;/a&gt;</code>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="task-section">
-                                <div class="task-header">
-                                    <i class="fas fa-phone"></i>
-                                    <span>روابط التليفون (tel)</span>
-                                </div>
-                                <div class="task-description">
-                                    <p>يمكنك إنشاء رابط يفتح تطبيق الهاتف على الأجهزة المحمولة مع رقم هاتف محدد مسبقًا.</p>
-                                    
-                                    <div class="code-example">
-                                        <code>&lt;a href="tel:+20123456789"&gt;اتصل بنا&lt;/a&gt;</code>
-                                    </div>
-                                    
-                                    <p>مفيد بشكل خاص للأجهزة المحمولة، حيث يمكن للمستخدم النقر على الرابط للاتصال مباشرة.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="task-section">
-                                <div class="task-header">
-                                    <i class="fas fa-anchor"></i>
-                                    <span>الروابط داخل الصفحة (Jump Links)</span>
-                                </div>
-                                <div class="task-description">
-                                    <p>الروابط داخل الصفحة تسمح للمستخدمين بالانتقال إلى أجزاء مختلفة من نفس الصفحة. تتكون من جزأين:</p>
-                                    <ul>
-                                        <li>الوجهة: نستخدم خاصية <code>id</code> لتحديد مكان في الصفحة</li>
-                                        <li>الرابط: نستخدم <code>#</code> متبوعة بقيمة <code>id</code> للوجهة</li>
-                                    </ul>
-                                    
-                                    <div class="code-example">
-                                        <code>&lt;!-- الوجهة --&gt;<br>
-&lt;h2 id="section1"&gt;القسم الأول&lt;/h2&gt;<br><br>
-&lt;!-- الرابط --&gt;<br>
-&lt;a href="#section1"&gt;اذهب إلى القسم الأول&lt;/a&gt;</code>
-                                    </div>
-                                    
-                                    <p>يمكن أيضًا استخدام روابط داخل الصفحة للانتقال إلى أجزاء محددة في صفحات أخرى:</p>
-                                    
-                                    <div class="code-example">
-                                        <code>&lt;a href="about.html#team"&gt;تعرف على فريقنا&lt;/a&gt;</code>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="task-section">
-                                <div class="task-header">
-                                    <i class="fas fa-lightbulb"></i>
-                                    <span>أفضل الممارسات</span>
-                                </div>
-                                <div class="task-description">
-                                    <ul>
-                                        <li>استخدم نصوص وصفية للروابط بدلاً من عبارات مثل "اضغط هنا"</li>
-                                        <li>استخدم دائمًا خاصية alt للصور لتحسين إمكانية الوصول</li>
-                                        <li>استخدم صورًا بحجم مناسب لتحسين أداء الموقع</li>
-                                        <li>استخدم التنسيق الصحيح للروابط (مثل https:// للروابط الخارجية)</li>
-                                        <li>استخدم target="_blank بحذر، حيث قد يؤثر negatively on user experience</li>
-                                        <li>تأكد من أن جميع الروابط تعمل بشكل صحيح</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        `
                     }
                 ]
             }
@@ -930,7 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
             streak: 0,
             lastCheckDate: null,
             notes: {},
-            htmlCode: '<h1>مرحباً بالعالم!</h1>\n<p>ابدأ كتابة كود HTML هنا...</p>',
+            htmlCode: '',
             cssCode: ''
         }
     };
@@ -980,10 +788,6 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTheme();
         renderModules();
         updateStreak();
-        
-        // Force CSS to be empty on every load
-        app.state.cssCode = '';
-        
         initializeCodePlayground();
     }
 
@@ -1286,3 +1090,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
+
