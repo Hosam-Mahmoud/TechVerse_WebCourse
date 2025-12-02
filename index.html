@@ -307,11 +307,13 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-out, padding 0.3s ease-out;
+            padding: 0 20px;
         }
         
         .lesson-body.show {
-            max-height: 2000px; /* A large enough value to accommodate content */
+            max-height: 3000px; /* Increased value to accommodate more content */
             transition: max-height 0.5s ease-in, padding 0.3s ease-in;
+            padding: 20px;
         }
         
         .lesson-tasks {
@@ -385,6 +387,10 @@
             background-color: rgba(52, 152, 219, 0.05);
             border-radius: 8px;
             border: 1px solid rgba(52, 152, 219, 0.2);
+            display: block !important; /* Ensure notes section is always visible */
+            visibility: visible !important;
+            opacity: 1 !important;
+            height: auto !important;
         }
         
         .lesson-notes-header {
@@ -617,6 +623,22 @@
             .CodeMirror {
                 font-size: 12px;
             }
+            
+            /* Specific fix for mobile notes section */
+            .lesson-body.show {
+                max-height: none !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            
+            .lesson-notes-section {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                height: auto !important;
+                margin-top: 20px !important;
+                padding: 15px !important;
+            }
         }
     </style>
 </head>
@@ -804,6 +826,44 @@ document.addEventListener('DOMContentLoaded', () => {
                             </ul>
                             <p>بعد هذا الدرس، ستكون قادرًا على إنشاء نماذج تفاعلية وجمع البيانات من المستخدمين بفعالية.</p>
                         `
+                    },
+                    { 
+                        id: 'l6', 
+                        title: 'الدرس السادس: العناصر الهيكلية والوسائط', 
+                        videoLink: 'https://youtu.be/15xVcn_7JF0?si=r9e5kd9gRqJabPLw',
+                        quizLink: 'https://docs.google.com/forms/d/e/1FAIpQLSeAWDGV-LQ0NNLmWFmP6pJ8wqXaZMiodonMInkbQ8qbpP2Vvg/viewform?usp=publish-editor',
+                        content: `
+                            <p>في هذا الدرس، سنتعرف على العناصر الهيكلية في HTML5 التي تساعد في تنظيم المحتوى بشكل أفضل، بالإضافة إلى كيفية إضافة الوسائط المتعددة مثل الفيديو والصوت إلى صفحات الويب. سنتعلم أيضاً عن بعض المفاهيم الهامة في تطوير الويب مثل لغة الصفحة والوسوم الوصفية وبنية المشروع.</p>
+                            
+                            <p><strong>🏗️ العناصر الهيكلية (HTML5 Semantic Elements):</strong></p>
+                            <ul>
+                                <li><strong>header:</strong> يمثل الجزء العلوي من الصفحة أو القسم.</li>
+                                <li><strong>nav:</strong> يستخدم لقائمة التنقل الرئيسية في الموقع.</li>
+                                <li><strong>section:</strong> يمثل قسماً من المحتوى في الصفحة.</li>
+                                <li><strong>article:</strong> يمثل محتوى مستقل يمكن إعادة استخدامه.</li>
+                                <li><strong>aside:</strong> يمثل المحتوى الجانبي المرتبط بالمحتوى الرئيسي.</li>
+                                <li><strong>footer:</strong> يمثل الجزء السفلي من الصفحة أو القسم.</li>
+                                <li><strong>main:</strong> يمثل المحتوى الرئيسي الفريد في الصفحة.</li>
+                                <li><strong>time:</strong> يحدد وقتاً أو تاريخاً معيناً.</li>
+                                <li><strong>figure و figcaption:</strong> يستخدمان معاً لعرض الصور مع شرح لها.</li>
+                            </ul>
+                            
+                            <p><strong>🎬 الوسائط Media:</strong></p>
+                            <ul>
+                                <li><strong>video:</strong> كيفية إضافة مقاطع الفيديو إلى صفحات الويب.</li>
+                                <li><strong>audio:</strong> كيفية إضافة ملفات الصوت إلى صفحات الويب.</li>
+                                <li><strong>iframe:</strong> كيفية تضمين خرائط وأدوات خارجية في صفحات الويب.</li>
+                            </ul>
+                            
+                            <p><strong>📋 مفاهيم هامة:</strong></p>
+                            <ul>
+                                <li><strong>Html lang:</strong> أهمية تحديد لغة الصفحة لمحركات البحث وبرامج القراءة الشاشة.</li>
+                                <li><strong>Meta Tags:</strong> كيفية استخدام الوسوم الوصفية لتحسين SEO وتوفير معلومات إضافية عن الصفحة.</li>
+                                <li><strong>بنية المشروع Folder Structure:</strong> أفضل الممارسات لتنظيم ملفات المشروع.</li>
+                            </ul>
+                            
+                            <p>بعد هذا الدرس، ستكون قادرًا على إنشاء صفحات ويب منظمة باستخدام العناصر الهيكلية، وإضافة الوسائط المتعددة، وتطبيق المفاهيم الهامة في تطوير الويب.</p>
+                        `
                     }
                 ]
             }
@@ -989,6 +1049,19 @@ document.addEventListener('DOMContentLoaded', () => {
             lessonBody.classList.toggle('show');
             icon.classList.toggle('fa-chevron-down');
             icon.classList.toggle('fa-chevron-up');
+            
+            // Special handling for mobile to ensure notes section is visible
+            if (window.innerWidth <= 480 && lessonBody.classList.contains('show')) {
+                setTimeout(() => {
+                    const notesSection = lessonCard.querySelector('.lesson-notes-section');
+                    if (notesSection) {
+                        notesSection.style.display = 'block';
+                        notesSection.style.visibility = 'visible';
+                        notesSection.style.opacity = '1';
+                        notesSection.style.height = 'auto';
+                    }
+                }, 300);
+            }
         });
 
         videoCheckbox.addEventListener('change', () => handleTaskCompletion(lesson.id, 'video', videoCheckbox.checked));
